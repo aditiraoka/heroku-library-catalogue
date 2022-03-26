@@ -1,1 +1,1 @@
-web: gunicorn run:lib_app
+web: gunicorn src\run:lib_app
