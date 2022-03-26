@@ -13,6 +13,7 @@ import os,inspect
 from flask import Flask
 
 lib_app = Flask(__name__)
+
 lib_app.config['SESSION_TYPE'] = 'filesystem'
 lib_app.config['SECRET_KEY']='apple123'
 lib_app.config['JWT_SECRET_KEY']='jwt-secret-string'
