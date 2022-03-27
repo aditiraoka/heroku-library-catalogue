@@ -6,9 +6,8 @@
  Email: aditirao19@gmail.com
  Status: {dev_status}
 """
-from app import lib_app, list_of_hashes
+from app import lib_app, sheet
 from app.libs import * 
-import sqlite3 as sql
 from flask import render_template
 
 
@@ -18,5 +17,5 @@ def hello_world():
 
 @lib_app.route("/books", methods=['GET','POST'])
 def show_books():
-
+    list_of_hashes = sheet.get_all_records()
     return render_template("list.html", result=list_of_hashes, length=len(list_of_hashes))
