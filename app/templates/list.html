@@ -2,15 +2,19 @@
 <html>
   <title>Aditi's Library</title>
   <head>
-     <!-- Stylesheet 
+     <!-- Stylesheet -->
      <link href="../static/css/style.css" rel="stylesheet" type="text/css"/>
-     -->
+     <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables.css">
+   <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+   <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+   <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js"></script>
+
   </head>
 
  <body>
-    <h1 style="align-items: center;">Books in my shelf</h1>
+    <h1>Books in my shelf</h1>
 
-<table style="align-items: center;">
+  <table table id="example" class="display">
     <thead>
       <tr>
         {% for key,value in result[0].items() %}
@@ -18,17 +22,26 @@
         {% endfor %}
       </tr>
     </thead>
-
     <tbody>
-    {% for i in range(0, length) %}
-     <tr>
-        {% for key, value in result[i].items() %}
-         <td> {{ value }} </td>
-        {% endfor %}
-     </tr>
-    {% endfor %}
+        {% for i in range(0, length) %}
+        <tr>
+           {% for key, value in result[i].items() %}
+               {% if key == 'Goodreads Link' %}
+                    <td><a href={{ value }} target="_blank">Click Here</a></td>
+                {% elif key == 'Blog Link' and value != 'NA' %}
+                    <td><a href={{ value }} target="_blank">Read My Review</a></td>
+                {% else %}
+                    <td> {{ value }} </td>
+                {% endif %}
+           {% endfor %}
+        </tr>
+       {% endfor %}
     </tbody>
   </table>
 
 </body>
+<script>
+    $(document).ready(function(){ $('#example').DataTable(); });
+</script>
+
 </html>

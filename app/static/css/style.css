@@ -38,3 +38,40 @@ body, html {
     margin: auto;
     width: 40%;
   }
+  
+  table, #display, #example {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+
+    margin-left: 5%;
+    width: auto;
+    margin-right: 5%;
+
+    word-wrap: break-word;
+    display: block;
+    /*height: 85%;*/
+    overflow-y: scroll;
+
+  }
+  
+  th {
+    font-family: "Times New Roman", Times, serif;
+    font-size: large;
+  }
+
+  td {
+    font-size: medium;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    word-wrap: break-word;
+  }
+
+  td, th {
+    border: 1px solid #b1acfa;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
