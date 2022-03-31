@@ -19,10 +19,9 @@ def hello_world():
     for i in range(0,total):
         if list_of_hashes[i]['Status'] == "Read":
             read=read+1
-        if list_of_hashes[i]['Status'] == "TBR":
-            tbr=tbr+1
         if list_of_hashes[i]['Blog Link'] != "NA":
             reviewed=reviewed+1
+    tbr=total-read
     print("read: ",read,"\ttbr: ",tbr)
     
     return render_template("home.html", read=read, reviewed=reviewed, total=total, tbr=tbr )
