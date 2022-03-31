@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#tabledata').DataTable({
+  "lengthMenu": [ 5, 10, 25, 50, 75, 100 ]
+});
+    });
+  </script>
+  <style>
+    a:link, a:visited {
+        color: #0d82df;
+        background-color: transparent;
+        text-decoration: none;
+        border-bottom: 3px solid #d7e6f8;
+    }
+
+a:hover {
+    color: goldenrod;
+    background-color: transparent;
+    text-decoration: none;
+    border-bottom: 3px solid #d7e6f8;
+}
+
+a:active {
+  color: lightseagreen;
+  background-color: transparent;
+  text-decoration: underline;
+}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+      <br>
+      {% if status == 'All' %}
+        <h2 style="align-content: center;">All the Books in my collection</h2>
+      {% else %}
+        <h2 style="align-items: center;">Books with the status: {{ status }}</h2>
+      {% endif %}
+    <br>
+    <table id="tabledata" class="table table-striped">
+      <thead>
+        {% for key,value in result[0].items() %}
+			    <th>{{ key }}</th>
+            {% endfor %}
+      </thead>
+      <tbody>
+        {% for i in range(0, length) %}
+                    <tr>
+                        {% for key, value in result[i].items() %}
+                            {% if key == 'Sr No'%}
+                                <td>{{ i+1 }}</td>
+                            {% elif key == 'Goodreads Link' %}
+                                <td><a href={{ value }} target="_blank">Click Here</a></td>
+                            {% elif key == 'Blog Link' and value != 'NA' %}
+                                <td><a href={{ value }} target="_blank">Read My Review</a></td>
+                            {% else %}
+                                <td> {{ value }} </td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <br><br>.
+</body>

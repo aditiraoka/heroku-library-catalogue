@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+	</script>
+
+	<style>
+		table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 50%;
+		}
+		
+		td,
+		th {
+			border: 1px solid #dddddd;
+			text-align: left;
+			padding: 8px;
+		}
+		
+		h1 {
+			color: green;
+		}
+	</style>
+</head>
+
+<body>
+	<center>
+		<h1>Books I have {{ status }}</h1>
+		<b>Search the table for Course, Fees or Type:
+		<input id="gfg" type="text"
+				placeholder="Search here">
+		</b>
+		<br>
+		<br><br><br>
+		<table>
+            {% for key,value in result[0].items() %}
+			    <th>{{ key }}</th>
+            {% endfor %}
+
+			<tbody id="books">
+				{% for i in range(0, length) %}
+                    <tr>
+                        {% for key, value in result[i].items() %}
+                            {% if key == 'Goodreads Link' %}
+                                <td><a href={{ value }} target="_blank">Click Here</a></td>
+                            {% elif key == 'Blog Link' and value != 'NA' %}
+                                <td><a href={{ value }} target="_blank">Read My Review</a></td>
+                            {% else %}
+                                <td> {{ value }} </td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+			</tbody>
+		</table>
+
+		<script>
+			$(document).ready(function() {
+				$("#gfg").on("keyup", function() {
+					var value = $(this).val().toLowerCase();
+					$("#books tr").filter(function() {
+						$(this).toggle($(this).text()
+						.toLowerCase().indexOf(value) > -1)
+					});
+				});
+			});
+		</script>
+</center>
+
+</body>
+
+</html>
