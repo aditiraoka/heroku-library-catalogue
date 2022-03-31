@@ -21,9 +21,9 @@ def hello_world():
             read=read+1
         if list_of_hashes[i]['Blog Link'] != "NA":
             reviewed=reviewed+1
+
     tbr=total-read
-    print("read: ",read,"\ttbr: ",tbr)
-    
+
     return render_template("home.html", read=read, reviewed=reviewed, total=total, tbr=tbr )
 
 @lib_app.route("/books", methods=['GET','POST'])
